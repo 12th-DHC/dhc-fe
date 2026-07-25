@@ -1,17 +1,18 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../theme/colors";
+import type { CSSProperties } from "react";
 
 interface ButtonStyleProps {
-    width?: string;
-    padding?: string;
-    gap?: string;
-    fontSize?: string;
+  $width?: CSSProperties["width"];
+  $padding?: CSSProperties["padding"];
+  $gap?: CSSProperties["gap"];
+  $fontSize?: CSSProperties["fontSize"];
 }
 
 const Button = styled.button<ButtonStyleProps>`
-    width: ${({ width }) => width ?? "100%"};
-    padding: ${({ padding }) => padding ?? "12px 0"};
-    font-size: ${({ fontSize }) => fontSize ?? "16px"};
+    width: ${({ $width }) => $width ?? "100%"};
+    padding: ${({ $padding }) => $padding ?? "12px 0"};
+    font-size: ${({ $fontSize }) => $fontSize ?? "16px"};
 
     display: flex;
     align-items: center;
