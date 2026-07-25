@@ -3,13 +3,12 @@ import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import styled from "@emotion/styled";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   title: string;
   placeholder: string;
   icon: ReactElement;
   width: string;
   isSecret: boolean;
-  type?: string;
 
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
@@ -81,9 +80,9 @@ function Input({
   icon,
   width,
   isSecret,
-  type,
   value,
   setValue,
+  ...rest
 }: InputProps) {
   const [isShown, setIsShown] = useState(false);
 
@@ -99,8 +98,9 @@ function Input({
         {icon}
 
         <input
+          {...rest}
           placeholder={placeholder}
-          type={isSecret && !isShown ? "password" : type}
+          type={isSecret && !isShown ? "password" : rest.type}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
