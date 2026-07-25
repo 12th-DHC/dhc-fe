@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Router from './Router';
 // @ts-expect-error virtual module provided by Vite PWA plugin
 import { registerSW } from "virtual:pwa-register";
+import { FullBox, MoblieBox } from "@repo/ui";
 
 registerSW({
   immediate: true,
@@ -10,6 +11,10 @@ registerSW({
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <Router />
+    <FullBox>
+      <MoblieBox>
+        <Router />
+      </MoblieBox>
+    </FullBox>
   </BrowserRouter>,
 );
