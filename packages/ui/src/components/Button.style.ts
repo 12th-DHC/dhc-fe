@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { mainColor } from "../theme/colors";
 
-interface ButtonProps {
+interface ButtonStyleProps {
     width?: string;
     padding?: string;
     gap?: string;
     fontSize?: string;
 }
 
-const Button = styled.button<ButtonProps>`
+const Button = styled.button<ButtonStyleProps>`
     width: ${({ width }) => width ?? "100%"};
     padding: ${({ padding }) => padding ?? "12px 0"};
     font-size: ${({ fontSize }) => fontSize ?? "16px"};
