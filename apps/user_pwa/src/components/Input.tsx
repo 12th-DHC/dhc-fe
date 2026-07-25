@@ -61,7 +61,10 @@ const InputInnerBox = styled.div`
   }
 `;
 
-const PasswordShowBtn = styled.div`
+const PasswordShowBtn = styled.button`
+  all: unset;
+  cursor: pointer;
+  
   margin-left: auto;
   margin-right: 10px;
 

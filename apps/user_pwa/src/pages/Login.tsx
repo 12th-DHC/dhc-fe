@@ -46,14 +46,14 @@ function LoginPage() {
             title={'비밀번호'} 
             placeholder={'바말번호를 입력하세요.'} 
             icon={<IoKeyOutline />} 
-            width={'70%'} 
+            width={'70%'}
             isSecret={true} 
             value={password}
             setValue={setPassword}
           />
         </AutoCenterdBox>
         <AutoCenterdBox>
-          <Button width='70%' fontSize='15px'>로그인하기</Button>
+          <Button $width='70%' $fontSize='15px'>로그인하기</Button>
         </AutoCenterdBox>
       </FullCenterdBox>
     </>
