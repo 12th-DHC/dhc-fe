@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import styled from "@emotion/styled";
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> { // 부모에서 onChange를 제한다는 문법
   title: string;
   placeholder: string;
   icon: ReactElement;
@@ -11,7 +11,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   isSecret: boolean;
 
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string) => void;
 }
 
 const InputBox = styled.div<{ width: string }>`
@@ -81,7 +81,7 @@ function Input({
   width,
   isSecret,
   value,
-  setValue,
+  onChange,
   ...rest
 }: InputProps) {
   const [isShown, setIsShown] = useState(false);
@@ -102,7 +102,7 @@ function Input({
           placeholder={placeholder}
           type={isSecret && !isShown ? "password" : rest.type}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
         />
 
         {isSecret && (

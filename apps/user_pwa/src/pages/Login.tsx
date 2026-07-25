@@ -40,7 +40,7 @@ function LoginPage() {
             isSecret={false} 
             type={'number'}
             value={room}
-            setValue={setRoom}
+            onChange={setRoom}
           />
           <Input 
             title={'비밀번호'} 
@@ -49,7 +49,7 @@ function LoginPage() {
             width={'70%'}
             isSecret={true} 
             value={password}
-            setValue={setPassword}
+            onChange={setPassword}
           />
         </AutoCenterdBox>
         <AutoCenterdBox>
