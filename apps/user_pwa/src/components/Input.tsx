@@ -24,7 +24,7 @@ const InputBox = styled.div<{ width: string }>`
   gap: 10px;
 `;
 
-const LabelText = styled.p`
+const LabelText = styled.label`
   font-size: 15px;
   font-weight: bold;
 
@@ -64,7 +64,7 @@ const InputInnerBox = styled.div`
 const PasswordShowBtn = styled.button`
   all: unset;
   cursor: pointer;
-  
+
   margin-left: auto;
   margin-right: 10px;
 
