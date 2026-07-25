@@ -4,6 +4,7 @@ import { AutoCenterdBox, FullCenterdBox } from '../styles/Box'
 import { TitleText, TitleDescriptionText } from '../styles/Text'
 import { AiOutlineHome } from "react-icons/ai";
 import { IoKeyOutline } from "react-icons/io5";
+import { Button } from '@repo/ui';
 
 const LoginTitleBoxStyle = {
   gap: '20px',
@@ -11,7 +12,8 @@ const LoginTitleBoxStyle = {
 };
 
 const InputTitleBoxStyle = {
-  gap: '20px'
+  gap: '20px',
+  marginBottom: '8%'
 };
 
 const LoginDexTextStyle = {
@@ -46,10 +48,12 @@ function LoginPage() {
             icon={<IoKeyOutline />} 
             width={'70%'} 
             isSecret={true} 
-            type={'number'}
             value={password}
             setValue={setPassword}
           />
+        </AutoCenterdBox>
+        <AutoCenterdBox>
+          <Button width='70%' fontSize='15px'>로그인하기</Button>
         </AutoCenterdBox>
       </FullCenterdBox>
     </>
