@@ -11,8 +11,9 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 # turbo 버전을 build-arg로 바꿀 수 있게 파라미터화
 ARG TURBO_VERSION=2.10.6
-# pnpm dlx 대신 전역 설치된 turbo를 사용 (매 빌드마다 CLI 재다운로드 방지)
-RUN pnpm add -g turbo@${TURBO_VERSION}
+# pnpm add -g는 PNPM_HOME/bin PATH 설정 문제로 실패할 수 있어 npm 전역 설치 사용
+# (turbo는 독립 실행형 바이너리라 npm으로 설치해도 pnpm 프로젝트 빌드에 영향 없음)
+RUN npm install -g turbo@${TURBO_VERSION}
 
 WORKDIR /app
 
@@ -49,17 +50,19 @@ FROM base AS builder
 ARG APP
 
 # Remote Cache 확장 포인트 (미설정 시 빈 값 → turbo가 자동으로 로컬 캐시만 사용)
+# TURBO_API/TURBO_TEAM은 민감정보가 아니므로 build-arg로 받고,
+# TURBO_TOKEN은 이미지 레이어에 남지 않도록 BuildKit secret mount로 받는다.
 ARG TURBO_API
-ARG TURBO_TOKEN
 ARG TURBO_TEAM
 ENV TURBO_API=${TURBO_API}
-ENV TURBO_TOKEN=${TURBO_TOKEN}
 ENV TURBO_TEAM=${TURBO_TEAM}
 
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=pruner /app/out/full/ .
 
-RUN turbo build --filter=${APP}
+RUN --mount=type=secret,id=turbo_token,required=false \
+    export TURBO_TOKEN=$(cat /run/secrets/turbo_token 2>/dev/null || true) && \
+    turbo build --filter=${APP}
 
 # Runner
 FROM nginx:1.29-alpine AS runner
