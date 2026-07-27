@@ -16,6 +16,10 @@ const InputTitleBoxStyle = {
   marginBottom: '8%'
 };
 
+const LoginButtonBoxStyle = {
+  marginBottom: '8%',
+};
+
 const LoginDexTextStyle = {
   color: '#afafaf'
 };
@@ -27,7 +31,7 @@ function LoginPage() {
   return (
     <>
       <FullCenterdBox>
-        <AutoCenterdBox style={LoginTitleBoxStyle}>
+        <AutoCenterdBox style={LoginTitleBoxStyle}> 
           <TitleText>로그인</TitleText>
           <TitleDescriptionText style={LoginDexTextStyle}>호실 번호와 비밀번호를 입력해 주세요.</TitleDescriptionText>
         </AutoCenterdBox>
@@ -52,7 +56,7 @@ function LoginPage() {
             onChange={setPassword}
           />
         </AutoCenterdBox>
-        <AutoCenterdBox>
+        <AutoCenterdBox style={LoginButtonBoxStyle}>
           <Button $width='70%' $fontSize='15px'>로그인하기</Button>
         </AutoCenterdBox>
       </FullCenterdBox>
