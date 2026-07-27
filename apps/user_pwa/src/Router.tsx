@@ -5,7 +5,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path='/login' element={<LoginPage />} />
-      <Route path='/2' element={<p>2</p>} />
+      <Route path='/' element={<LoginPage />} />
     </Routes>
   );
 }
