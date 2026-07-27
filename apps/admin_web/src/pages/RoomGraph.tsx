@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { GlobalStyle } from "../GlobaStyle";
+import { GlobalStyle } from "../global/GlobalStyle";
 
-export function RoomGraph() {
+import { Title, P } from "./RoomGraph.style";
+
+function RoomGraph() {
   return (
     <>
       <GlobalStyle />
@@ -12,14 +13,3 @@ export function RoomGraph() {
 }
 
 export default RoomGraph;
-
-const Title = styled.h1`
-  font-size: 30px;
-  font-weight: 700;
-  text-align: left;
-`;
-
-const P = styled.p`
-  font-size: 20px;
-  text-align: left;
-`;

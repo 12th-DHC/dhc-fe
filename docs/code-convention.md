@@ -32,22 +32,22 @@ packages/ui/src/components/
 
 ### 그 외 파일
 
-| 구분 | 네이밍 | 예시 |
-|------|--------|------|
-| 컴포넌트 | PascalCase.tsx | `Input.tsx`, `LoginPage.tsx` |
-| 유틸리티 | camelCase.ts | `formatDate.ts` |
-| 타입 정의 | PascalCase.types.ts | `User.types.ts` |
-| 상수 | UPPER_SNAKE_CASE.ts | `API_ENDPOINTS.ts` |
+| 구분      | 네이밍              | 예시                         |
+| --------- | ------------------- | ---------------------------- |
+| 컴포넌트  | PascalCase.tsx      | `Input.tsx`, `LoginPage.tsx` |
+| 유틸리티  | camelCase.ts        | `formatDate.ts`              |
+| 타입 정의 | PascalCase.types.ts | `User.types.ts`              |
+| 상수      | UPPER_SNAKE_CASE.ts | `API_ENDPOINTS.ts`           |
 
 ## styled components 위치 기준
 
 styled components를 **어디에 둘지**는 재사용 가능성에 따라 결정한다.
 
-| 기준 | 위치 | 예시 |
-|------|------|------|
-| 2개 이상의 컴포넌트에서 재사용 | `styles/` 폴더 | `Box.style.ts`, `Text.style.ts` |
-| 특정 컴포넌트 전용 | 해당 컴포넌트 옆 | `Input.style.ts` |
-| 공통 UI 라이브러리 | `packages/ui/` | `Button.style.ts` |
+| 기준                           | 위치             | 예시                            |
+| ------------------------------ | ---------------- | ------------------------------- |
+| 2개 이상의 컴포넌트에서 재사용 | `styles/` 폴더   | `Box.style.ts`, `Text.style.ts` |
+| 특정 컴포넌트 전용             | 해당 컴포넌트 옆 | `Input.style.ts`                |
+| 공통 UI 라이브러리             | `packages/ui/`   | `Button.style.ts`               |
 
 ## import 규칙
 

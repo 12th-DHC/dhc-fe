@@ -1,4 +1,4 @@
-import type { Room } from "../types/room";
+import type { Room } from "../types/Room.types";
 
 export const rooms: Room[] = [
   { room: "201호", students: "김민준·이서연", status: "완료", rate: 100 },
