@@ -57,7 +57,7 @@ ARG TURBO_TEAM
 ENV TURBO_API=${TURBO_API}
 ENV TURBO_TEAM=${TURBO_TEAM}
 
-COPY --from=installer /app/node_modules ./node_modules
+COPY --from=installer /app ./
 COPY --from=pruner /app/out/full/ .
 
 RUN --mount=type=secret,id=turbo_token,required=false \
