@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Input from '../components/Input';
-import { AutoCenterdBox, FullCenterdBox } from '../styles/Box'
-import { TitleText, TitleDescriptionText } from '../styles/Text'
+import { AutoCenterdBox, FullCenterdBox } from '../styles/Box.style'
+import { TitleText, TitleDescriptionText } from '../styles/Text.style'
 import { AiOutlineHome } from "react-icons/ai";
 import { IoKeyOutline } from "react-icons/io5";
 import { Button } from '@repo/ui';

@@ -11,7 +11,7 @@ export const FullBox = styled.div`
     background-color: #e5e5e5;
 `;
 
-export const MoblieBox = styled.div`
+export const MobileBox = styled.div`
     width: 100%;
     max-width: 400px;
     height: 100dvh;
