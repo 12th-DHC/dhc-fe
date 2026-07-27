@@ -36,3 +36,24 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# 앱 빌드 관련
+dist-ssr
+dev-dist
+
+# 로그 (apps 쪽에서INFRINGEMENT 있던 것)
+pnpm-debug.log*
+lerna-debug.log*
+
+# 에디터/IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 로컬 파일 (*.local은 apps 쪽에 있었는데 root의 .env.*.local보다 범위 넓음)
+*.local
