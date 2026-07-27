@@ -1,12 +1,9 @@
+import StatCard from "../components/StatCard";
 import { rooms } from "../data/room";
-
 import {
   Title,
   P,
   Grid,
-  Card,
-  Label,
-  Value,
   RoomSection,
   TableWrapper,
   SectionTitle,
@@ -30,25 +27,14 @@ function DashBoard() {
       <P>기숙사 전체 청소 현황 요약</P>
 
       <Grid>
-        <Card>
-          <Label>전체 호실</Label>
-          <Value>{rooms.length}</Value>
-        </Card>
-
-        <Card>
-          <Label>이번주 완료율</Label>
-          <Value $highlight>{weeklyCompletionRate}%</Value>
-        </Card>
-
-        <Card>
-          <Label>미체크 호실</Label>
-          <Value>{uncheckedCount}</Value>
-        </Card>
-
-        <Card>
-          <Label>등록 이메일</Label>
-          <Value>8</Value>
-        </Card>
+        <StatCard label="전체 호실" value={rooms.length} />
+        <StatCard
+          label="이번주 완료율"
+          value={`${weeklyCompletionRate}%`}
+          highlight
+        />
+        <StatCard label="미체크 호실" value={uncheckedCount} />
+        <StatCard label="등록 이메일" value={8} />
       </Grid>
 
       <RoomSection>

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import { GlobalStyle } from "./global/GlobalStyle";
-import Sidebar from "./components/SideBar";
+import Sidebar from "./layout/SideBar";
 import DashBoard from "./pages/DashBoard";
 import RoomGraph from "./pages/RoomGraph";
 
