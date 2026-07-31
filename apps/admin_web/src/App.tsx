@@ -1,11 +1,8 @@
-import { Route, Routes } from "react-router-dom";
-
 import { GlobalStyle } from "./global/GlobalStyle";
 import Sidebar from "./layout/SideBar";
-import DashBoard from "./pages/DashBoard";
-import RoomGraph from "./pages/RoomGraph";
+import Router from "./router/Router";
 
-import { Layout, Main } from "./App.style";
+import { Layout, Main } from "./styles/App.style";
 
 export function App() {
   return (
@@ -14,10 +11,7 @@ export function App() {
       <Layout>
         <Sidebar />
         <Main>
-          <Routes>
-            <Route path="/" element={<DashBoard />} />
-            <Route path="/rooms" element={<RoomGraph />} />
-          </Routes>
+          <Router />
         </Main>
       </Layout>
     </>
