@@ -79,18 +79,6 @@ function Navbar({
                 <p>{item.title}</p>
             </IconBox>
         ))}
-        <IconBox to={"/home"} selected={selected == "home"}>
-            <IoMdHome />
-            <p>홈</p>
-        </IconBox>
-        <IconBox to={"/statistics"} selected={selected == "statistics"}>
-            <SlGraph />
-            <p>통계</p>
-        </IconBox>
-        <IconBox to={"/setting"} selected={selected == "setting"}>
-            <IoIosSettings />
-            <p>설정</p>
-        </IconBox>
     </NavbarBox>
   );
 }
