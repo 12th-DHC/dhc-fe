@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar"
-import { AutoCenterdBox, FullCenterdBox } from "../styles/Box.style"
+import { AutoCenterdBox, FullCenteredBox } from "../styles/Box.style"
 import CheckBar from '../components/CheckBar';
 import TitleBar from "../components/TitleBar";
 
@@ -30,7 +30,7 @@ function StatisticsPage() {
   ];
 
   return (
-    <FullCenterdBox>
+    <FullCenteredBox>
       <TitleBar title={"주차별 통계"} description={"주차별 미완료 개수를 확인하세요."} />
       <AutoCenterdBox style={CheckBoxesBoxStyle}>
           {datas.map((data) => (
@@ -43,7 +43,7 @@ function StatisticsPage() {
           ))}
       </AutoCenterdBox>
       <Navbar selected={"statistics"} />
-    </FullCenterdBox>
+    </FullCenteredBox>
   )
 }
 

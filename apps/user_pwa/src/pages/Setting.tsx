@@ -1,11 +1,11 @@
 import Navbar from "../components/Navbar"
-import { FullCenterdBox } from "../styles/Box.style"
+import { FullCenteredBox } from "../styles/Box.style"
 
 function SettingPage() {
   return (
-    <FullCenterdBox>
+    <FullCenteredBox>
       <Navbar selected={"setting"} />
-    </FullCenterdBox>
+    </FullCenteredBox>
   )
 }
 

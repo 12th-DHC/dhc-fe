@@ -1,11 +1,11 @@
 import Navbar from "../components/Navbar"
-import { FullCenterdBox } from "../styles/Box.style"
+import { FullCenteredBox } from "../styles/Box.style"
 
 function HomePage() {
   return (
-    <FullCenterdBox>
+    <FullCenteredBox>
       <Navbar selected={"home"} />
-    </FullCenterdBox>
+    </FullCenteredBox>
   )
 }
 

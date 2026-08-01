@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Input from '../components/Input';
-import { AutoCenterdBox, FullCenterdBox } from '../styles/Box.style'
+import { AutoCenterdBox, FullCenteredBox } from '../styles/Box.style'
 import { TitleText, TitleDescriptionText } from '../styles/Text.style'
 import { AiOutlineHome } from "react-icons/ai";
 import { IoKeyOutline } from "react-icons/io5";
@@ -29,7 +29,7 @@ function LoginPage() {
   const [password, setPassword] = useState("");
 
   return (
-    <FullCenterdBox>
+    <FullCenteredBox>
       <AutoCenterdBox style={LoginTitleBoxStyle}> 
         <TitleText>로그인</TitleText>
         <TitleDescriptionText style={LoginDexTextStyle}>호실 번호와 비밀번호를 입력해 주세요.</TitleDescriptionText>
@@ -58,7 +58,7 @@ function LoginPage() {
       <AutoCenterdBox style={LoginButtonBoxStyle}>
         <Button $width='70%' $fontSize='15px'>로그인하기</Button>
       </AutoCenterdBox>
-    </FullCenterdBox>
+    </FullCenteredBox>
   )
 }
 
