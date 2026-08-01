@@ -27,7 +27,7 @@ const NavbarBox = styled.nav`
     align-items: center;
 `
 
-const IconBox = styled(Link)<{ selected: boolean }>`
+const IconBox = styled(Link)<{ $selected: boolean }>`
     text-decoration: none;
     height: 100%;
     width: 20%;
@@ -39,12 +39,12 @@ const IconBox = styled(Link)<{ selected: boolean }>`
     gap: 7%;
 
     svg {
-        color: ${({ selected }) => selected ? SelectedColor : UnSelectedColor};
+        color: ${({ $selected }) => $selected ? SelectedColor : UnSelectedColor};
         font-size: 110%;
     }
 
     p {
-        color: ${({ selected }) => selected ? SelectedColor : UnSelectedColor};
+        color: ${({ $selected }) => $selected ? SelectedColor : UnSelectedColor};
         margin: 0;
         font-weight: 700;
     }
@@ -74,7 +74,7 @@ function Navbar({
   return (
     <NavbarBox>
         {NavBarItems.map((item) => (
-            <IconBox to={`/${item.path}`} selected={selected == item.path}>
+            <IconBox to={`/${item.path}`} $selected={selected == item.path}>
                 {item.icon}
                 <p>{item.title}</p>
             </IconBox>
