@@ -30,22 +30,20 @@ function StatisticsPage() {
   ];
 
   return (
-    <>
-      <FullCenterdBox>
-        <TitleBar title={"주차별 통계"} description={"주차별 미완료 개수를 확인하세요."} />
-        <AutoCenterdBox style={CheckBoxesBoxStyle}>
-            {datas.map((data) => (
-              <CheckBar
-                key={data.week}
-                width="80%"
-                title={`${data.week}주차`}
-                value={data.value}
-              />
-            ))}
-        </AutoCenterdBox>
-        <Navbar selected={"statistics"} />
-      </FullCenterdBox>
-    </>
+    <FullCenterdBox>
+      <TitleBar title={"주차별 통계"} description={"주차별 미완료 개수를 확인하세요."} />
+      <AutoCenterdBox style={CheckBoxesBoxStyle}>
+          {datas.map((data) => (
+            <CheckBar
+              key={data.week}
+              width="80%"
+              title={`${data.week}주차`}
+              value={data.value}
+            />
+          ))}
+      </AutoCenterdBox>
+      <Navbar selected={"statistics"} />
+    </FullCenterdBox>
   )
 }
 
