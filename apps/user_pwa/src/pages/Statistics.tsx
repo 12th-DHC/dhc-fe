@@ -10,31 +10,38 @@ const CheckBoxesBoxStyle = {
 };
 
 function StatisticsPage() {
+  const datas = [
+    {
+      "week": 1,
+      "value": 1
+    },
+    {
+      "week": 2,
+      "value": 2
+    },
+    {
+      "week": 3,
+      "value": 3
+    },
+    {
+      "week": 4,
+      "value": 4
+    },
+  ];
+
   return (
     <>
       <FullCenterdBox>
         <TitleBar title={"주차별 통계"} description={"주차별 미완료 개수를 확인하세요."} />
         <AutoCenterdBox style={CheckBoxesBoxStyle}>
-            <CheckBar 
+            {datas.map((data) => (
+              <CheckBar
+                key={data.week}
                 width="80%"
-                title="1주차"
-                value={1}
-            />
-            <CheckBar 
-                width="80%"
-                title="2주차"
-                value={2}
-            />
-            <CheckBar 
-                width="80%"
-                title="3주차"
-                value={3}
-            />
-            <CheckBar 
-                width="80%"
-                title="4주차"
-                value={4}
-            />
+                title={`${data.week}주차`}
+                value={data.value}
+              />
+            ))}
         </AutoCenterdBox>
         <Navbar selected={"statistics"} />
       </FullCenterdBox>
