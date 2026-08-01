@@ -1,12 +1,9 @@
-import { useState } from "react";
-
 import { IoMdHome } from "react-icons/io";
 import { SlGraph } from "react-icons/sl";
 import { IoIosSettings } from "react-icons/io";
 
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { mainColor } from "@repo/ui";
 
 interface NavbarProps {
   selected: "home" | "statistics" | "setting";

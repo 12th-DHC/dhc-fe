@@ -1,6 +1,3 @@
-import type { ReactElement } from "react";
-import { useState } from "react";
-import { FiEye, FiEyeOff } from "react-icons/fi";
 import styled from "@emotion/styled";
 
 interface CheckBarProps {
