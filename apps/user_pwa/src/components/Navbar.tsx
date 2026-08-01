@@ -50,11 +50,35 @@ const IconBox = styled(Link)<{ selected: boolean }>`
     }
 `
 
+const NavBarItems = [
+    {
+        path: "home",
+        title: "홈",
+        icon: (<IoMdHome />)
+    },
+    {
+        path: "statistics",
+        title: "통계",
+        icon: (<SlGraph />)
+    },
+    {
+        path: "setting",
+        title: "설정",
+        icon: (<IoIosSettings />)
+    },
+];
+
 function Navbar({
   selected,
 }: NavbarProps) {
   return (
     <NavbarBox>
+        {NavBarItems.map((item) => (
+            <IconBox to={`/${item.path}`} selected={selected == item.path}>
+                {item.icon}
+                <p>{item.title}</p>
+            </IconBox>
+        ))}
         <IconBox to={"/home"} selected={selected == "home"}>
             <IoMdHome />
             <p>홈</p>

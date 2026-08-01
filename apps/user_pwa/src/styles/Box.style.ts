@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const FullCenterdBox = styled.div`
+export const FullCenteredBox = styled.div`
     width: 100%;
     height: 100%;
 
