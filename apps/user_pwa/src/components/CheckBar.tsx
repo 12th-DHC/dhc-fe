@@ -6,6 +6,8 @@ interface CheckBarProps {
   value: number;
 }
 
+const WARNING_OVER_VALUE = 3;
+
 const CheckBox = styled.div<{ 
     $width: string,
     $backgroundColor: string,
@@ -49,11 +51,14 @@ function CheckBar({
   width,
   value,
 }: CheckBarProps) {
+
+  const isWarning: boolean = value < WARNING_OVER_VALUE;
+
   return (
     <CheckBox 
       $width={width} 
-      $backgroundColor={value<3 ? "#f6f4fa" : "#fff5f5"}
-      $borderColor={value<3 ? "#b6b6b6" : "#feb2b2"}
+      $backgroundColor={isWarning ? "#f6f4fa" : "#fff5f5"}
+      $borderColor={isWarning ? "#b6b6b6" : "#feb2b2"}
     >
       <CheckRightText>{title}</CheckRightText>
       <CheckLeftText>{value}개 미완료</CheckLeftText>
