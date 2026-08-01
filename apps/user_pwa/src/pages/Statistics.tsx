@@ -9,11 +9,6 @@ const CheckBoxesBoxStyle = {
   justifyContent: "flex-start",
 };
 
-const TitleBoxStyle = {
-  marginTop: "10%",
-  marginBottom: "10%"
-}
-
 function StatisticsPage() {
   return (
     <>
