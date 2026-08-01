@@ -7,17 +7,17 @@ interface CheckBarProps {
 }
 
 const CheckBox = styled.div<{ 
-    width: string,
-    backgroundColor: string,
-    borderColor: string
+    $width: string,
+    $backgroundColor: string,
+    $borderColor: string
   }>`
-  width: ${({ width }) => width};
+  width: ${({ $width }) => $width};
   height: auto;
 
   border-radius: 15px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ $backgroundColor }) => $backgroundColor};
 
-  border: 1px solid ${({ borderColor }) => borderColor};
+  border: 1px solid ${({ $borderColor }) => $borderColor};
 
   box-sizing: border-box;
   padding: 10px;
@@ -51,9 +51,9 @@ function CheckBar({
 }: CheckBarProps) {
   return (
     <CheckBox 
-      width={width} 
-      backgroundColor={value<3 ? "#f6f4fa" : "#fff5f5"}
-      borderColor={value<3 ? "#b6b6b6" : "#feb2b2"}
+      $width={width} 
+      $backgroundColor={value<3 ? "#f6f4fa" : "#fff5f5"}
+      $borderColor={value<3 ? "#b6b6b6" : "#feb2b2"}
     >
       <CheckRightText>{title}</CheckRightText>
       <CheckLeftText>{value}개 미완료</CheckLeftText>
