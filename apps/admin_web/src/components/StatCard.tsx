@@ -1,4 +1,4 @@
-import { CardWrapper, Label, Value } from "./StatCard.style";
+import { CardWrapper, Label, Value } from "../styles/StatCard.style";
 
 interface StatCardProps {
   label: string;
@@ -6,7 +6,7 @@ interface StatCardProps {
   highlight?: boolean;
 }
 
-function StatCard({ label, value, highlight }: StatCardProps) {
+function StatCard({ label, value, highlight = false }: StatCardProps) {
   return (
     <CardWrapper>
       <Label>{label}</Label>

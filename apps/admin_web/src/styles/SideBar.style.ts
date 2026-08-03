@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const SidebarWrapper = styled.aside`
   width: 220px;

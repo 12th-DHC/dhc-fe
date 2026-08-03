@@ -1,9 +1,7 @@
 import StatCard from "../components/StatCard";
-import { rooms } from "../data/room";
+import { rooms } from "../data/Room";
+import { Title, Desc } from "../styles/PageHeader.style";
 import {
-  Title,
-  P,
-  Grid,
   RoomSection,
   TableWrapper,
   SectionTitle,
@@ -11,20 +9,21 @@ import {
   Th,
   Tr,
   Td,
-  Badge,
-} from "./DashBoard.style";
+} from "../styles/SectionTable.style";
+import { Grid } from "../styles/Dashboard.style";
 
 const weeklyCompletionRate = Math.round(
   rooms.reduce((sum, r) => sum + r.rate, 0) / rooms.length,
 );
 
-const uncheckedCount = rooms.filter((r) => r.status === "미완료").length;
+const incompleteRooms = rooms.filter((r) => r.rate < 100);
+const uncheckedCount = incompleteRooms.length;
 
 function DashBoard() {
   return (
     <>
       <Title>어드민 대시보드</Title>
-      <P>기숙사 전체 청소 현황 요약</P>
+      <Desc>기숙사 전체 청소 현황 요약</Desc>
 
       <Grid>
         <StatCard label="전체 호실" value={rooms.length} />
@@ -33,31 +32,27 @@ function DashBoard() {
           value={`${weeklyCompletionRate}%`}
           highlight
         />
-        <StatCard label="미체크 호실" value={uncheckedCount} />
+        <StatCard label="미완료 호실" value={uncheckedCount} />
         <StatCard label="등록 이메일" value={8} />
       </Grid>
 
       <RoomSection>
-        <SectionTitle>호실 현황</SectionTitle>
+        <SectionTitle>미완료 호실</SectionTitle>
         <TableWrapper>
           <Table>
             <thead>
               <tr>
                 <Th>호실</Th>
                 <Th>담당 학생 (A·B)</Th>
-                <Th>상태</Th>
                 <Th>완료율</Th>
               </tr>
             </thead>
             <tbody>
-              {rooms.map((r) => (
+              {incompleteRooms.map((r) => (
                 <Tr key={r.room}>
                   <Td $bold>{r.room}</Td>
                   <Td>{r.students}</Td>
-                  <Td>
-                    <Badge $done={r.status === "완료"}>{r.status}</Badge>
-                  </Td>
-                  <Td>{r.rate}%</Td>
+                  <Td $danger={r.rate < 100}>{r.rate}%</Td>
                 </Tr>
               ))}
             </tbody>

@@ -1,0 +1,35 @@
+import { css, Global } from "@emotion/react";
+
+const styles = css`
+  @font-face {
+    font-family: "PyeojinGothic";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2504-1@1.0/PyeojinGothic-Light.woff2")
+      format("woff2");
+    font-weight: 300;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "PyeojinGothic";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2504-1@1.0/PyeojinGothic-Regular.woff2")
+      format("woff2");
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "PyeojinGothic";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2504-1@1.0/PyeojinGothic-Bold.woff2")
+      format("woff2");
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  body {
+    font-family: "PyeojinGothic", sans-serif;
+  }
+`;
+
+export function GlobalStyle() {
+  return <Global styles={styles} />;
+}
