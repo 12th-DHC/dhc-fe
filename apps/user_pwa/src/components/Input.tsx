@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import styled from "@emotion/styled";
@@ -9,23 +9,36 @@ interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "
   icon: ReactElement;
   width: string;
   isSecret: boolean;
+  titleColor?: CSSProperties["color"];
+  titleSize?: CSSProperties["fontSize"];
+  marginBottom?: CSSProperties["marginBottom"];
 
   value: string;
   onChange: (value: string) => void;
 }
 
-const InputBox = styled.div<{ width: string }>`
+const InputBox = styled.div<{ 
+  width: string,
+  $marginBottom?: CSSProperties["marginBottom"],
+}>`
   width: ${({ width }) => width};
   height: auto;
 
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  margin-bottom: ${({ $marginBottom }) => $marginBottom ? $marginBottom : 0};
 `;
 
-const LabelText = styled.label`
-  font-size: 15px;
+const LabelText = styled.label<{ 
+  $color?: CSSProperties["color"],
+  $titleSize?: CSSProperties["fontSize"],
+}>`
+  font-size: ${({ $titleSize }) => $titleSize ? $titleSize : "15px"};
   font-weight: bold;
+
+  color: ${({ $color }) => $color ? $color : "black"};
 
   margin: 0;
 `;
@@ -76,12 +89,15 @@ const PasswordShowBtn = styled.button`
 
 function Input({
   title,
+  titleColor,
+  titleSize,
   placeholder,
   icon,
   width,
   isSecret,
   value,
   onChange,
+  marginBottom,
   ...rest
 }: InputProps) {
   const [isShown, setIsShown] = useState(false);
@@ -91,8 +107,8 @@ function Input({
   }
 
   return (
-    <InputBox width={width}>
-      <LabelText>{title}</LabelText>
+    <InputBox width={width} $marginBottom={marginBottom}>
+      <LabelText $color={titleColor} $titleSize={titleSize}>{title}</LabelText>
 
       <InputInnerBox>
         {icon}
