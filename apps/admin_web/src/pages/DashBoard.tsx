@@ -1,5 +1,5 @@
 import StatCard from "../components/StatCard";
-import { rooms } from "../data/Room";
+import { rooms } from "../data/room";
 import { Title, Desc } from "../styles/PageHeader.style";
 import {
   RoomSection,
