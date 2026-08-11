@@ -15,9 +15,8 @@ const UnSelectedColor = "#9CA3AF";
 const NavbarBox = styled.nav`
     width: 100%;
     height: 10%;
+    flex-shrink: 0;
     gap: 13%;
-
-    margin-top: auto;
 
     border-top: 1px solid #bebebe;
 

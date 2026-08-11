@@ -5,6 +5,7 @@ import { TitleText, TitleDescriptionText } from '../styles/Text.style'
 import { AiOutlineHome } from "react-icons/ai";
 import { IoKeyOutline } from "react-icons/io5";
 import { Button } from '@repo/ui';
+import { useNavigate } from 'react-router-dom';
 
 const LoginTitleBoxStyle = {
   gap: '20px',
@@ -27,6 +28,12 @@ const LoginDexTextStyle = {
 function LoginPage() {
   const [room, setRoom] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLoginBtnClick = () => {
+    navigate('/setting'); // 이동할 경로
+  };
+
 
   return (
     <FullCenteredBox>
@@ -56,7 +63,7 @@ function LoginPage() {
         />
       </AutoCenterdBox>
       <AutoCenterdBox style={LoginButtonBoxStyle}>
-        <Button $width='70%' $fontSize='15px'>로그인하기</Button>
+        <Button $width='70%' $fontSize='15px' onClick={handleLoginBtnClick}>로그인하기</Button>
       </AutoCenterdBox>
     </FullCenteredBox>
   )

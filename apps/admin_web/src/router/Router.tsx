@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import DashBoard from "../pages/Dashboard";
+import DashBoard from "../pages/DashBoard";
 import RoomGraph from "../pages/RoomGraph";
 
 function Router() {

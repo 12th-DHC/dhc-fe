@@ -1,4 +1,4 @@
-import { rooms } from "../data/Room";
+import { rooms } from "../data/room";
 import { weeklyTrend } from "../data/WeeklyTrend";
 import { Title, Desc } from "../styles/PageHeader.style";
 import {

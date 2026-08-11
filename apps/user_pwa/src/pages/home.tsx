@@ -1,11 +1,14 @@
 import Navbar from "../components/Navbar"
-import { FullCenteredBox } from "../styles/Box.style"
+import { PageBox, ScrollBox } from "../styles/Box.style"
 
 function HomePage() {
   return (
-    <FullCenteredBox>
+    <PageBox>
+      <ScrollBox>
+        home
+      </ScrollBox>
       <Navbar selected={"home"} />
-    </FullCenteredBox>
+    </PageBox>
   )
 }
 
