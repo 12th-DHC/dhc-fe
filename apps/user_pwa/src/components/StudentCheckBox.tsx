@@ -3,7 +3,7 @@ import { SmallTitleText } from "../styles/Text.style";
 import CheckBox from "./CheckBox";
 
 interface StudentCheckBoxProps {
-  status: [boolean, boolean, boolean, boolean, boolean, boolean]; // 정확히 6개!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  status: [boolean, boolean, boolean, boolean, boolean, boolean];
   alpha: string;
   name: string;
 }
