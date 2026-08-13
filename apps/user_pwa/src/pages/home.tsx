@@ -1,9 +1,7 @@
-import CheckBox from "../components/CheckBox";
 import Navbar from "../components/Navbar"
 import StudentCheckBox from "../components/StudentCheckBox";
 import TitleBar from "../components/TitleBar"
-import { PageBox, ScrollBox, InnerBox } from '../styles/Box.style';
-import { SmallTitleText } from "../styles/Text.style"
+import { PageBox, ScrollBox } from '../styles/Box.style';
 
 function HomePage() {
   return (

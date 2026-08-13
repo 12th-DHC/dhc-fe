@@ -47,7 +47,7 @@ function CheckBox({
   const color = status ? "#954ff8" : "#efedf5";
   const icon = status ? <IoCheckbox /> : <RiCheckboxBlankLine />;
   return (
-    <GrayOutBox $color={color}>
+    <GrayOutBox $color={color} role="checkbox" aria-checked={status} aria-readonly="true">
         {icon}
         <p>{text}</p>
     </GrayOutBox>

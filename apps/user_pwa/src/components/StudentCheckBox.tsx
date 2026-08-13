@@ -1,5 +1,3 @@
-import styled from "@emotion/styled";
-import type { CSSProperties } from "react";
 import { InnerBox } from "../styles/Box.style";
 import { SmallTitleText } from "../styles/Text.style";
 import CheckBox from "./CheckBox";
