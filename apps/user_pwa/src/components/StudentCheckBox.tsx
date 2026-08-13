@@ -31,7 +31,7 @@ function StudentCheckBox({
         <SmallTitleText>{alpha} 학생 담당 · {name}</SmallTitleText>
         {texts.map((text, index) => (
             <CheckBox
-                key={index}
+                key={text}
                 status={status[index]}
                 text={text}
             />
