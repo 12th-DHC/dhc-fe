@@ -29,8 +29,12 @@ function StudentCheckBox({
   return (
     <InnerBox style={InnerBoxStyle}>
         <SmallTitleText>{alpha} 학생 담당 · {name}</SmallTitleText>
-        {Array.from({ length: 6 }, (_, index) => (
-            <CheckBox status={status[index]} text={texts[index]} />
+        {texts.map((text, index) => (
+            <CheckBox
+                key={index}
+                status={status[index]}
+                text={text}
+            />
         ))}
     </InnerBox>
   );
