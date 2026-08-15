@@ -1,4 +1,3 @@
-import { mainColor } from "@repo/ui";
 import styled from "@emotion/styled";
 
 export const Head = styled.div`
@@ -32,11 +31,6 @@ export const CardDesc = styled.p`
   font-size: 13px;
   color: #888;
   margin: 0;
-`;
-
-export const CardResult = styled.p<{ isError?: boolean }>`
-  font-size: 13px;
-  margin-top: 6px;
 `;
 
 export const SendButton = styled.button`

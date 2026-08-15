@@ -2,10 +2,15 @@ import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 
 export const SidebarWrapper = styled.aside`
+  box-sizing: border-box;
   width: 220px;
   flex-shrink: 0;
   padding: 24px 16px;
   border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow-y: auto;
 `;
 
 export const NavItem = styled(NavLink)`
