@@ -36,6 +36,16 @@ export const GrayInnerBox = styled.div`
     flex-direction: column;
 `;
 
+export const InnerBox = styled.div`
+    width: 80%;
+    height: auto;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+`;
+
 export const PageBox = styled.div`
     width: 100%;
     height: 100%;
