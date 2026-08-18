@@ -11,6 +11,8 @@ export const SidebarWrapper = styled.aside`
   top: 0;
   height: 100svh;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const NavItem = styled(NavLink)`
@@ -31,5 +33,23 @@ export const NavItem = styled(NavLink)`
     font-weight: 700;
     color: #9333ea;
     background: #f3e8ff;
+  }
+`;
+
+export const LogoutButton = styled.button`
+  align-self: flex-start;
+  margin-top: auto;
+  background: #fff;
+  color: #dc2626;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: #fee2e2;
+    border-color: #dc2626;
   }
 `;
