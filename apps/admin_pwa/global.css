@@ -74,7 +74,9 @@ body,
 }
 
 * {
-  font-family: Pretendard;
+  font-family: 'Pretendard', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
 }
 
 *::-webkit-scrollbar {
@@ -88,9 +90,4 @@ body,
 *::-webkit-scrollbar-thumb {
   background: #d1d5db;
   border-radius: 10px;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #d1d5db transparent;
 }
