@@ -12,7 +12,6 @@ interface NavbarProps {
 }
 
 const SelectedColor = "#7C3AED";
-const UnSelectedColor = "#9CA3AF";
 
 const NavbarBox = styled.nav`
   width: 100%;
