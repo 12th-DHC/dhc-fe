@@ -202,11 +202,11 @@ function Navbar({
       </FloorSelectBox>
 
       <RoomSelectBox>
-        <RoomArrowButton onClick={firstRoom}>
+        <RoomArrowButton aria-label="첫 방" onClick={firstRoom}>
           «
         </RoomArrowButton>
 
-        <RoomArrowButton onClick={previousRoom}>
+        <RoomArrowButton aria-label="이전 방" onClick={previousRoom}>
           ‹
         </RoomArrowButton>
 
