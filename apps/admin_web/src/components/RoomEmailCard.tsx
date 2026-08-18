@@ -1,4 +1,4 @@
-import type { RoomEmail } from "../types/RoomEmail.types";
+import type { RoomEmailCardProps } from "../types/RoomEmailCard.types";
 import { getEmailStatus, emailStatusLabel } from "../utils/emailStatus";
 import {
   CardWrapper,
@@ -10,10 +10,6 @@ import {
   StudentName,
   StudentEmail,
 } from "../styles/RoomEmailCard.style";
-
-interface RoomEmailCardProps {
-  data: RoomEmail;
-}
 
 function RoomEmailCard({ data }: RoomEmailCardProps) {
   const status = getEmailStatus(data);

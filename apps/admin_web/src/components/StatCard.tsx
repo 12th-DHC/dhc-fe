@@ -1,10 +1,5 @@
+import type { StatCardProps } from "../types/StatCard.types";
 import { CardWrapper, Label, Value } from "../styles/StatCard.style";
-
-interface StatCardProps {
-  label: string;
-  value: string | number;
-  highlight?: boolean;
-}
 
 function StatCard({ label, value, highlight = false }: StatCardProps) {
   return (
