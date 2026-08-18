@@ -58,7 +58,7 @@ function HomePage() {
 
     setCurrentStatusA(a);
     setCurrentStatusB(b);
-  }, [currentFloor, currentRoomIdx]);
+  }, [currentFloor, currentRoomIdx, selectedBox]);
 
   const changeCheck = (
     room: number,
@@ -77,19 +77,6 @@ function HomePage() {
         const next = new Set(prev);
         next.delete(`${room}-${alpha}-${idx}`);
         return next;
-      });
-    }
-    if (alpha == "A") {
-      setCurrentStatusA(prev => {
-        const statusList = [...prev] as StatusTuple;
-        statusList[idx] = status;
-        return statusList;
-      });
-    } else {
-      setCurrentStatusB(prev => {
-        const statusList = [...prev] as StatusTuple;
-        statusList[idx] = status;
-        return statusList;
       });
     }
   }
