@@ -68,12 +68,23 @@ function CheckBox({
     changeCheck(room, idx, alpha, !status);
   };
   return (
-    <GrayOutBox role="checkbox" aria-checked={status} aria-readonly="true">
-        <IconBox>
-          <Icon onClick={clickIconHandler} $color={color}>{icon}</Icon>
-        </IconBox>
-        <p>{text}</p>
-    </GrayOutBox>
+     <GrayOutBox
+       role="checkbox"
+       aria-checked={status}
+       tabIndex={0}
+       onClick={clickIconHandler}
+       onKeyDown={(e) => {
+         if (e.key === "Enter" || e.key === " ") {
+           e.preventDefault();
+           clickIconHandler();
+         }
+       }}
+     >
+       <IconBox>
+         <Icon $color={color}>{icon}</Icon>
+       </IconBox>
+       <p>{text}</p>
+     </GrayOutBox>
   );
 }
 
