@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
 import StudentCheckBox from '../components/StudentCheckBox';
 import { PageBox, ScrollBox } from '../styles/Box.style';
 import Navbar from '../components/Navbar';
@@ -8,6 +9,82 @@ type StatusTuple = [boolean, boolean, boolean, boolean, boolean, boolean];
 const ScrollBoxStyle = {
     marginTop: "10%",
 }
+
+const SaveActionBar = styled.div`
+  width: 100%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 6px 14px 8px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+`;
+
+const SaveButtonBox = styled.div`
+  width: 100%;
+  max-width: 344px;
+  display: flex;
+  gap: 6px;
+`;
+
+const LoadButton = styled.button`
+  flex: 1;
+  height: 40px;
+  border: none;
+  border-radius: 13px;
+  background-color: #f3f4f6;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.12s ease;
+
+  &:hover {
+    background-color: #ededf0;
+    color: #4b5563;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+`;
+
+const SaveButton = styled.button`
+  flex: 1;
+  height: 40px;
+  border: none;
+  border-radius: 13px;
+  background-color: #7c3aed;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.18);
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.12s ease;
+
+  &:hover {
+    background-color: #6d28d9;
+    box-shadow: 0 6px 14px rgba(124, 58, 237, 0.24);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    background-color: #d8d2e8;
+    color: #8f87a3;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+`;
 
 const RoomData = {
   1: [
@@ -37,14 +114,47 @@ const RoomData = {
   ]
 };
 
+function setDailyStorage(key: string, value: Set<string>) {
+  const date = new Date();
+  date.setHours(24, 0, 0, 0);
+
+  const data = JSON.stringify({
+    value: [...value], // Set은 JSON에서 저장이 되지 않음, 배열로 저장
+    expiresAt: date.getTime(),
+  });
+
+  localStorage.setItem(key, data);
+}
+
+function getDailyStorage(key: string): Set<string> | null {
+  if (typeof window === 'undefined') return null;
+
+  const stored = localStorage.getItem(key);
+
+  if (!stored) return null;
+
+  const data = JSON.parse(stored);
+
+  if (Date.now() >= data.expiresAt) {
+    localStorage.removeItem(key);
+    return null;
+  }
+
+  return new Set(data.value);
+}
+
+const selectedBoxKey = "selectedData";
+
 function HomePage() {
+  const isSaveDisabled = false; 
+
   const [currentStatusA, setCurrentStatusA] = useState<StatusTuple>([false, false, false, false, false, false]);
   const [currentStatusB, setCurrentStatusB] = useState<StatusTuple>([false, false, false, false, false, false]);
 
   const [currentFloor, setCurrentFloor] = useState<keyof typeof RoomData>(2);
   const [currentRoomIdx, setCurrentRoomIdx] = useState<number>(0);
 
-  const [selectedBox, setSelectedBox] = useState<Set<string>>(new Set());
+  const [selectedBox, setSelectedBox] = useState<Set<string>>(() => getDailyStorage(selectedBoxKey) ?? new Set());
 
   useEffect(() => {
     const a: StatusTuple = [false, false, false, false, false, false];
@@ -62,24 +172,25 @@ function HomePage() {
 
   const changeCheck = (
     room: number,
-    idx: number, 
+    idx: number,
     alpha: string,
     status: boolean
   ) => {
-    if (status === true) {
-      setSelectedBox(prev => {
-        const next = new Set(prev);
-        next.add(`${room}-${alpha}-${idx}`);
-        return next;
-      });
-    } else {
-      setSelectedBox(prev => {
-        const next = new Set(prev);
-        next.delete(`${room}-${alpha}-${idx}`);
-        return next;
-      });
-    }
-  }
+    setSelectedBox(prev => {
+      const next = new Set(prev);
+      const key = `${room}-${alpha}-${idx}`;
+
+      if (status) {
+        next.add(key);
+      } else {
+        next.delete(key);
+      }
+
+      setDailyStorage(selectedBoxKey, next);
+
+      return next;
+    });
+  };
   
   return (
     <PageBox>
@@ -87,6 +198,16 @@ function HomePage() {
         <StudentCheckBox status={currentStatusA} alpha={"A"} name={"장성주"} room={RoomData[currentFloor][currentRoomIdx]} changeCheck={changeCheck}/>
         <StudentCheckBox status={currentStatusB} alpha={"B"} name={"장성주"} room={RoomData[currentFloor][currentRoomIdx]} changeCheck={changeCheck}/>
       </ScrollBox>
+      <SaveActionBar>
+        <SaveButtonBox>
+          <LoadButton type="button">
+            불러오기
+          </LoadButton>
+          <SaveButton type="button" disabled={isSaveDisabled}>
+            저장
+          </SaveButton>
+        </SaveButtonBox>
+      </SaveActionBar>
       <Navbar floor={currentFloor} setFloor={setCurrentFloor} roomIdx={currentRoomIdx} setRoomIdx={setCurrentRoomIdx} floorRooms={RoomData[currentFloor]}/>
     </PageBox>
   )
