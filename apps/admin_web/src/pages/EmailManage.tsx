@@ -1,4 +1,4 @@
-import { Title, Desc } from "./styles/PageHeader.style";
+import { Title, Desc } from "../styles/PageHeader.style";
 import { roomEmails } from "../data/RoomEmail";
 import RoomEmailCard from "../components/RoomEmailCard";
 import {
@@ -10,8 +10,8 @@ import {
   CardDesc,
   SendButton,
   EmailRegister,
-} from "./styles/EmailManage.style";
-import { SectionTitle } from "./styles/SectionTable.style";
+} from "../styles/EmailManage.style";
+import { SectionTitle } from "../styles/SectionTable.style";
 
 function EmailManage() {
   return (

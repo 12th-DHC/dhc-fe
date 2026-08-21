@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Title, Desc } from "./styles/PageHeader.style";
+import { Title, Desc } from "../styles/PageHeader.style";
 import RoomSearch from "../components/RoomSearch";
 import CheckBox from "../components/CheckBox";
 import {
@@ -11,7 +11,7 @@ import {
   StudentColumnTitle,
   SaveRow,
   SaveButton,
-} from "./styles/CheckManage.style";
+} from "../styles/CheckManage.style";
 
 const ROOMS = [
   101, 102, 103, 104, 105, 106, 107, 108, 109,

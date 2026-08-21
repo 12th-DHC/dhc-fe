@@ -22,7 +22,7 @@ const NavbarBox = styled.nav`
   border-top: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   background-color: #ffffff;
 `;
 

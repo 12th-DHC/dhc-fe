@@ -3,7 +3,7 @@ import {
   SidebarWrapper,
   NavItem,
   LogoutButton,
-} from "../pages/styles/SideBar.style";
+} from "../styles/SideBar.style";
 import { NAV_ITEMS } from "../constants/NAV_ITEMS";
 
 function Sidebar() {
