@@ -6,19 +6,16 @@ export const LoginWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f7f7fb;
+  background: #fff;
 `;
 
 export const LoginCard = styled.div`
-  width: 400px;
-  min-height: 300px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #fbfbfd;
-  border: 1px solid #eee;
-  border-radius: 16px;
+  background: #fff;
   padding: 48px 32px;
 `;
 

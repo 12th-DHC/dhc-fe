@@ -9,7 +9,7 @@ import {
   StudentLabel,
   StudentName,
   StudentEmail,
-} from "../styles/RoomEmailCard.style";
+} from "./styles/RoomEmailCard.style";
 
 function RoomEmailCard({ data }: RoomEmailCardProps) {
   const status = getEmailStatus(data);

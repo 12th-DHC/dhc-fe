@@ -7,7 +7,7 @@ import {
   Chevron,
   DropdownList,
   DropdownItem,
-} from "../styles/Dropdown.style";
+} from "./styles/Dropdown.style";
 
 function Dropdown({ value, options, onChange }: DropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
