@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { SidebarWrapper, NavItem, LogoutButton } from "../styles/SideBar.style";
+import {
+  SidebarWrapper,
+  NavItem,
+  LogoutButton,
+} from "../pages/styles/SideBar.style";
 import { NAV_ITEMS } from "../constants/NAV_ITEMS";
 
 function Sidebar() {

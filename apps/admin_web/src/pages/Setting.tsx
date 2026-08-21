@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Title } from "../styles/PageHeader.style";
+import { Title } from "./styles/PageHeader.style";
 import Dropdown from "../components/Dropdown";
 import useClickOutside from "../hooks/useClickOutside";
 import {
@@ -13,7 +13,7 @@ import {
   TimePopover,
   TimeSelectRow,
   ResetButton,
-} from "../styles/Setting.style";
+} from "./styles/Setting.style";
 
 const HOURS = Array.from({ length: 24 }, (_, i) => i);
 const MINUTES = Array.from({ length: 12 }, (_, i) => i * 5);

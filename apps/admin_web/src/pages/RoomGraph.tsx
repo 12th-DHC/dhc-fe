@@ -1,6 +1,6 @@
 import { rooms } from "../data/Room";
 import { weeklyTrend } from "../data/WeeklyTrend";
-import { Title, Desc } from "../styles/PageHeader.style";
+import { Title, Desc } from "./styles/PageHeader.style";
 import {
   RoomSection,
   TableWrapper,
@@ -9,7 +9,7 @@ import {
   Th,
   Tr,
   Td,
-} from "../styles/SectionTable.style";
+} from "./styles/SectionTable.style";
 import {
   Head,
   Text,
@@ -22,7 +22,7 @@ import {
   BarLabel,
   BarValue,
   BarTrack,
-} from "../styles/RoomGraph.style";
+} from "./styles/RoomGraph.style";
 
 function RoomGraph() {
   return (

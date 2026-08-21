@@ -1,6 +1,6 @@
 import StatCard from "../components/StatCard";
 import { rooms } from "../data/Room";
-import { Title, Desc } from "../styles/PageHeader.style";
+import { Title, Desc } from "./styles/PageHeader.style";
 import {
   RoomSection,
   TableWrapper,
@@ -9,8 +9,8 @@ import {
   Th,
   Tr,
   Td,
-} from "../styles/SectionTable.style";
-import { Grid } from "../styles/Dashboard.style";
+} from "./styles/SectionTable.style";
+import { Grid } from "./styles/Dashboard.style";
 
 const weeklyCompletionRate = Math.round(
   rooms.reduce((sum, r) => sum + r.rate, 0) / rooms.length,

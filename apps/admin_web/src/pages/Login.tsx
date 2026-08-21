@@ -8,7 +8,7 @@ import {
   Label,
   PasswordInput,
   LoginButton,
-} from "../styles/Login.style";
+} from "./styles/Login.style";
 
 function Login() {
   const navigate = useNavigate();

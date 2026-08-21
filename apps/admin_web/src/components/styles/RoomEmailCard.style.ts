@@ -1,6 +1,6 @@
 import { mainColor } from "@repo/ui";
 import styled from "@emotion/styled";
-import type { EmailStatus } from "../types/RoomEmail.types";
+import type { EmailStatus } from "../../types/RoomEmail.types";
 
 const statusColor: Record<EmailStatus, { bg: string; text: string }> = {
   complete: { bg: "#dcfce7", text: "#16a34a" },
