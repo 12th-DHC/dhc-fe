@@ -5,9 +5,40 @@ export const Head = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 `;
 
 export const Text = styled.div``;
+
+export const HeadActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const PeriodTrigger = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 14px;
+  cursor: pointer;
+
+  span {
+    color: ${mainColor};
+    font-size: 10px;
+  }
+
+  &:hover {
+    border-color: ${mainColor};
+  }
+`;
 
 export const ExportButton = styled.button`
   background: #fff;
@@ -32,54 +63,4 @@ export const Badge = styled.span<{ $done: boolean }>`
   font-weight: 600;
   background: ${({ $done }) => ($done ? "#dcfce7" : "#fef3c7")};
   color: ${({ $done }) => ($done ? "#16a34a" : "#d97706")};
-`;
-
-export const TrendGraph = styled.div`
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 24px 20px 12px;
-`;
-
-export const BarList = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-  height: 250px;
-`;
-
-export const BarItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1;
-  height: 100%;
-`;
-
-export const BarValue = styled.span`
-  font-size: 13px;
-  font-weight: 600;
-  color: #374151;
-`;
-
-export const Bar = styled.div<{ $rate: number }>`
-  width: 100%;
-  height: ${({ $rate }) => Math.min($rate, 100)}%;
-  background: ${mainColor};
-  border-radius: 6px 6px 0 0;
-`;
-
-export const BarLabel = styled.span`
-  font-size: 13px;
-  color: #6b7280;
-  margin-top: 8px;
-`;
-
-export const BarTrack = styled.div`
-  width: 100%;
-  max-width: 48px;
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
 `;

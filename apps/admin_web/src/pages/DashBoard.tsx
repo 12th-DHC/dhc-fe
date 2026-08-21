@@ -12,11 +12,7 @@ import {
 } from "../styles/SectionTable.style";
 import { Grid } from "../styles/Dashboard.style";
 
-const weeklyCompletionRate = Math.round(
-  rooms.reduce((sum, r) => sum + r.rate, 0) / rooms.length,
-);
-
-const incompleteRooms = rooms.filter((r) => r.rate < 100);
+const incompleteRooms = rooms.filter((r) => r.incompleteCount > 0);
 const uncheckedCount = incompleteRooms.length;
 
 function DashBoard() {
@@ -27,11 +23,6 @@ function DashBoard() {
 
       <Grid>
         <StatCard label="전체 호실" value={rooms.length} />
-        <StatCard
-          label="이번주 완료율"
-          value={`${weeklyCompletionRate}%`}
-          highlight
-        />
         <StatCard label="미완료 호실" value={uncheckedCount} />
         <StatCard label="등록 이메일" value={8} />
       </Grid>
@@ -44,7 +35,7 @@ function DashBoard() {
               <tr>
                 <Th>호실</Th>
                 <Th>담당 학생 (A·B)</Th>
-                <Th>완료율</Th>
+                <Th>미완료 개수</Th>
               </tr>
             </thead>
             <tbody>
@@ -52,7 +43,9 @@ function DashBoard() {
                 <Tr key={r.room}>
                   <Td $bold>{r.room}</Td>
                   <Td>{r.students}</Td>
-                  <Td $danger={r.rate < 100}>{r.rate}%</Td>
+                  <Td $danger={r.incompleteCount > 0}>
+                    {r.incompleteCount}개
+                  </Td>
                 </Tr>
               ))}
             </tbody>

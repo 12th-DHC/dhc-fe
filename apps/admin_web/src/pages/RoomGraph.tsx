@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { rooms } from "../data/Room";
-import { weeklyTrend } from "../data/WeeklyTrend";
 import { Title, Desc } from "../styles/PageHeader.style";
 import {
   RoomSection,
@@ -15,25 +15,36 @@ import {
   Text,
   ExportButton,
   Badge,
-  TrendGraph,
-  Bar,
-  BarList,
-  BarItem,
-  BarLabel,
-  BarValue,
-  BarTrack,
+  HeadActions,
+  PeriodTrigger,
 } from "../styles/RoomGraph.style";
+import PeriodModal from "../components/PeriodModal";
 
 function RoomGraph() {
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [week, setWeek] = useState(1);
+  const [isPeriodModalOpen, setIsPeriodModalOpen] = useState(false);
+
   return (
     <>
       <Head>
         <Text>
           <Title>전체 호실 통계</Title>
-          <Desc>이번주 청소 체크 현황</Desc>
+          <Desc>
+            {month}월 {week}주차 청소 체크 현황
+          </Desc>
         </Text>
 
-        <ExportButton>시트로 내보내기</ExportButton>
+        <HeadActions>
+          <PeriodTrigger
+            type="button"
+            onClick={() => setIsPeriodModalOpen(true)}
+            aria-label="기간 선택"
+          >
+            {month}월 {week}주차 <span>▾</span>
+          </PeriodTrigger>
+          <ExportButton>시트로 내보내기</ExportButton>
+        </HeadActions>
       </Head>
 
       <RoomSection>
@@ -45,7 +56,7 @@ function RoomGraph() {
                 <Th>호실</Th>
                 <Th>담당 학생 (A·B)</Th>
                 <Th>상태</Th>
-                <Th>완료율</Th>
+                <Th>미완료 개수</Th>
               </tr>
             </thead>
             <tbody>
@@ -54,11 +65,11 @@ function RoomGraph() {
                   <Td $bold>{r.room}</Td>
                   <Td>{r.students}</Td>
                   <Td>
-                    <Badge $done={r.rate === 100}>
-                      {r.rate === 100 ? "완료" : "미완료"}
+                    <Badge $done={r.incompleteCount === 0}>
+                      {r.incompleteCount === 0 ? "완료" : "미완료"}
                     </Badge>
                   </Td>
-                  <Td>{r.rate}%</Td>
+                  <Td>{r.incompleteCount}개</Td>
                 </Tr>
               ))}
             </tbody>
@@ -66,22 +77,18 @@ function RoomGraph() {
         </TableWrapper>
       </RoomSection>
 
-      <RoomSection>
-        <SectionTitle>주차별 완료 추이</SectionTitle>
-        <TrendGraph>
-          <BarList>
-            {weeklyTrend.map((w) => (
-              <BarItem key={w.week}>
-                <BarTrack>
-                  <Bar $rate={w.rate} />
-                </BarTrack>
-                <BarLabel>{w.week}</BarLabel>
-                <BarValue>{Math.round(w.rate)}%</BarValue>
-              </BarItem>
-            ))}
-          </BarList>
-        </TrendGraph>
-      </RoomSection>
+      {isPeriodModalOpen && (
+        <PeriodModal
+          month={month}
+          week={week}
+          onConfirm={(newMonth, newWeek) => {
+            setMonth(newMonth);
+            setWeek(newWeek);
+            setIsPeriodModalOpen(false);
+          }}
+          onClose={() => setIsPeriodModalOpen(false)}
+        />
+      )}
     </>
   );
 }
