@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styled from '@emotion/styled';
 import { StudentCheckBox, Navbar } from '../components/index';
 import { PageBox, ScrollBox } from '../styles/index';
 
