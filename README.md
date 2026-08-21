@@ -1,160 +1,107 @@
-# Turborepo starter
+<div align="center">
 
-This Turborepo starter is maintained by the Turborepo core team.
+# 🧹 DHC-FE
 
-## Using this example
+**기숙사 청소 체크 서비스 프론트엔드**
 
-Run the following command:
+관리자와 학생이 함께 사용하는 기숙사 청소 확인 · 통계 · 알림 시스템입니다.
 
-```sh
-npx create-turbo@latest
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Turborepo](https://img.shields.io/badge/Turborepo-2-EF4444?logo=turborepo&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-9-F69220?logo=pnpm&logoColor=white)
+![Emotion](https://img.shields.io/badge/Emotion-11-C43BEB?logo=emotion&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-enabled-5A0FC8?logo=pwa&logoColor=white)
+
+</div>
+
+---
+
+## 📦 프로젝트 구조
+
+```
+dhc-fe
+├─ apps/
+│  ├─ admin_web/     # 관리자 웹 (대시보드 · 호실 통계 · 이메일 관리)
+│  ├─ admin_pwa/     # 관리자 PWA (모바일 관리)
+│  └─ user_pwa/      # 학생용 PWA (청소 체크)
+├─ packages/
+│  ├─ ui/            # 공유 UI 컴포넌트 · 테마 (@repo/ui)
+│  └─ eslint-config/ # 공유 ESLint 설정 (@repo/eslint-config)
+└─ docs/             # 문서 (코드 컨벤션 등)
 ```
 
-## What's inside?
+### Apps
 
-This Turborepo includes the following packages/apps:
+| 앱 | 설명 | 주요 기술 |
+| --- | --- | --- |
+| `admin_web` | 관리자 웹 대시보드 | React · Emotion · React Router |
+| `admin_pwa` | 관리자 모바일 PWA | React · PWA(Workbox) · react-icons |
+| `user_pwa` | 학생용 모바일 PWA | React · PWA(vite-plugin-pwa) |
 
-### Apps and Packages
+### Packages
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+| 패키지 | 설명 |
+| --- | --- |
+| `@repo/ui` | 앱 전역에서 공유하는 UI 컴포넌트 · 컬러 테마 |
+| `@repo/eslint-config` | 앱별로 공유하는 ESLint 설정 |
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+---
 
-This Turborepo has some additional tools already setup for you:
+## 🚀 시작하기
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+> Node.js `>= 18`, `pnpm@9` 가 필요합니다.
 
 ```sh
-cd my-turborepo
-turbo build
+# 1. 의존성 설치
+pnpm install
+
+# 2. 전체 앱 개발 서버 실행
+pnpm dev
 ```
 
-Without global `turbo`, use your package manager:
+특정 앱만 실행하려면 필터를 사용하세요.
 
 ```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
+pnpm dev --filter=admin_web   # 관리자 웹
+pnpm dev --filter=admin_pwa   # 관리자 PWA
+pnpm dev --filter=user_pwa    # 학생용 PWA
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+## 🛠 스크립트
 
-```sh
-turbo build --filter=docs
-```
+루트에서 아래 명령어로 전체 워크스페이스를 제어할 수 있습니다.
 
-Without global `turbo`:
+| 명령어 | 설명 |
+| --- | --- |
+| `pnpm dev` | 전체 앱 개발 서버 실행 |
+| `pnpm build` | 전체 앱 프로덕션 빌드 |
+| `pnpm lint` | 전체 워크스페이스 ESLint 검사 |
+| `pnpm format` | Prettier 포맷팅 |
+| `pnpm check-types` | 전체 타입 검사 |
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+---
 
-### Develop
+## 📐 컨벤션
 
-To develop all apps and packages, run the following command:
+- 코드 컨벤션은 [docs/code-convention.md](docs/code-convention.md)를 따릅니다.
+- 커밋 메시지는 Conventional Commits를 사용합니다.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+  ```
+  feat(admin_web): 호실 통계 페이지 추가
+  fix(user_pwa): 저장 버튼 활성화 로직 수정
+  ```
 
-```sh
-cd my-turborepo
-turbo dev
-```
+- 브랜치는 `feature/#이슈번호` 형식으로 생성합니다.
 
-Without global `turbo`, use your package manager:
+---
 
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
+<div align="center">
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+Made with 💜 by **XQUARE-12th**
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
-"# dhc-fe" 
+</div>
