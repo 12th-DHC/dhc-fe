@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import StudentCheckBox from "../components/StudentCheckBox";
-import { PageBox, ScrollBox } from "../styles/Box.style";
-import Navbar from "../components/Navbar";
+import { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+import { StudentCheckBox, Navbar } from '../components/index';
+import { PageBox, ScrollBox } from '../styles/index';
 
 type StatusTuple = [boolean, boolean, boolean, boolean, boolean, boolean];
 
