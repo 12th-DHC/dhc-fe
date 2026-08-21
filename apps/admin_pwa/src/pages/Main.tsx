@@ -14,8 +14,10 @@ const SaveActionBar = styled.div`
   width: 100%;
   flex-shrink: 0;
   box-sizing: border-box;
-  padding: 6px 14px 8px;
+  padding: 9px 14px 8px;
   background-color: #ffffff;
+  border-top: 1px solid #f1eff6;
+  box-shadow: 0 -3px 8px rgba(17, 24, 39, 0.03);
   display: flex;
   justify-content: center;
 `;
@@ -146,7 +148,7 @@ function getDailyStorage(key: string): Set<string> | null {
 const selectedBoxKey = "selectedData";
 
 function HomePage() {
-  const isSaveDisabled = false; 
+  const [isSaveDisabled, setIsSaveDisabled] = useState<boolean>(false);
 
   const [currentStatusA, setCurrentStatusA] = useState<StatusTuple>([false, false, false, false, false, false]);
   const [currentStatusB, setCurrentStatusB] = useState<StatusTuple>([false, false, false, false, false, false]);
@@ -190,6 +192,11 @@ function HomePage() {
 
       return next;
     });
+    setIsSaveDisabled(false);
+  };
+
+  const SaveBtnClick = () => {
+    setIsSaveDisabled(true);
   };
   
   return (
@@ -203,7 +210,7 @@ function HomePage() {
           <LoadButton type="button">
             불러오기
           </LoadButton>
-          <SaveButton type="button" disabled={isSaveDisabled}>
+          <SaveButton type="button" disabled={isSaveDisabled} onClick={SaveBtnClick}>
             저장
           </SaveButton>
         </SaveButtonBox>
