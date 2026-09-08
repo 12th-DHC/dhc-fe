@@ -45,6 +45,21 @@ export const Label = styled.label`
   margin-bottom: 6px;
 `;
 
+export const IdInput = styled.input`
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: #954ff8;
+  }
+`;
+
 export const PasswordInput = styled.input`
   width: 100%;
   box-sizing: border-box;
