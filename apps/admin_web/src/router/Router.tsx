@@ -6,15 +6,51 @@ import EmailManage from "../pages/EmailManage";
 import CheckManage from "../pages/CheckManage";
 import Setting from "../pages/Setting";
 import Login from "../pages/Login";
+import ProtectedRoute from "./ProtectedRoute";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<DashBoard />} />
-      <Route path="/rooms" element={<RoomGraph />} />
-      <Route path="/emails" element={<EmailManage />} />
-      <Route path="/check" element={<CheckManage />} />
-      <Route path="/settings" element={<Setting />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <DashBoard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/rooms"
+        element={
+          <ProtectedRoute>
+            <RoomGraph />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/emails"
+        element={
+          <ProtectedRoute>
+            <EmailManage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/check"
+        element={
+          <ProtectedRoute>
+            <CheckManage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Setting />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/login" element={<Login />} />
     </Routes>
   );
