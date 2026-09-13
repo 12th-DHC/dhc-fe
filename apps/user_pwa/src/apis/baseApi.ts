@@ -19,6 +19,7 @@ export const deleteAuthTokens = () => {
 
 export const certificatedApi = axios.create({
   baseURL: BASE_URL,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -26,6 +27,7 @@ export const certificatedApi = axios.create({
 
 export const api = axios.create({
   baseURL: BASE_URL,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },

@@ -7,8 +7,8 @@ import { IoKeyOutline } from "react-icons/io5";
 import { Button } from '@repo/ui';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from "@tanstack/react-query";
-import { useAuthStore, userLogin } from '../api/auth';
-import { setAuthTokens } from '../api/baseApi';
+import { useAuthStore, userLogin } from '../apis/auth';
+import { setAuthTokens } from '../apis/baseApi';
 import type { AxiosError } from 'axios';
 
 const LoginTitleBoxStyle = {

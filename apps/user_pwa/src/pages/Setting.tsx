@@ -8,7 +8,7 @@ import { IoKeyOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import { Button } from "@repo/ui";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../api/auth";
+import { useAuthStore } from "../apis/auth";
 
 const TitleText = styled.p`
   font-weight: bold;
