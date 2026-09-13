@@ -52,7 +52,8 @@ function LoginPage() {
       },
 
       onError: (error: AxiosError) => {
-          setErrorMessage(error.response?.data?.message ?? "로그인에 실패했습니다.");
+          const data = error.response?.data as { message?: string } | undefined;
+          setErrorMessage(data?.message ?? "로그인에 실패했습니다.");
       },
   });
 

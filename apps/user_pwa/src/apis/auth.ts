@@ -1,7 +1,13 @@
 import { certificatedApi, api, deleteAuthTokens } from "./baseApi";
 import { create } from "zustand";
 
-export const useAuthStore = create((set) => ({
+interface AuthStore {
+    isLoggedIn: boolean;
+    login: () => void;
+    logout: () => Promise<void>;
+}
+
+export const useAuthStore = create<AuthStore>()((set) => ({
     isLoggedIn: !!localStorage.getItem("accessToken"),
 
     login: () => set({ isLoggedIn: true }),
