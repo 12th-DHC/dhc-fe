@@ -7,6 +7,8 @@ import { useState } from "react";
 import { IoKeyOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import { Button } from "@repo/ui";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../api/auth";
 
 const TitleText = styled.p`
   font-weight: bold;
@@ -22,6 +24,9 @@ const SettingBoxStyle = {
 const inputTitleSize = "13px";
 
 function SettingPage() {
+  const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
+
   const [nowPassword, setNowPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
@@ -95,6 +100,19 @@ function SettingPage() {
             marginBottom={'7%'}
           />
           <Button $width='100%' $fontSize='15px' onClick={handleChangeEmailClick}>이메일 번경하기</Button>
+        </GrayInnerBox>
+        <GrayInnerBox style={{ marginBottom: '7%' }}>
+          <Button
+            $width='100%'
+            $fontSize='15px'
+            onClick={async () => {
+              await logout();
+              navigate('/login');
+            }}
+            style={{ backgroundColor: '#ff4444' }}
+          >
+            로그아웃
+          </Button>
         </GrayInnerBox>
       </ScrollBox>
       <Navbar selected={"setting"} />

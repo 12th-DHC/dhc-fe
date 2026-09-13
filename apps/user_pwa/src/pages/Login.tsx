@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import Input from '../components/Input';
 import { AutoCenterdBox, FullCenteredBox } from '../styles/Box.style'
-import { TitleText, TitleDescriptionText } from '../styles/Text.style'
+import { TitleText, TitleDescriptionText, ErrorText } from '../styles/Text.style'
 import { AiOutlineHome } from "react-icons/ai";
 import { IoKeyOutline } from "react-icons/io5";
 import { Button } from '@repo/ui';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from "@tanstack/react-query";
+import { useAuthStore, userLogin } from '../api/auth';
+import { setAuthTokens } from '../api/baseApi';
+import type { AxiosError } from 'axios';
 
 const LoginTitleBoxStyle = {
   gap: '20px',
@@ -28,10 +32,38 @@ const LoginDexTextStyle = {
 function LoginPage() {
   const [room, setRoom] = useState("");
   const [password, setPassword] = useState("");
+  const login = useAuthStore((state) => state.login);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  const loginMutation = useMutation({
+      mutationFn: ({ 
+          roomNumber,
+          roomPassword
+        }: {
+          roomNumber: number;
+          roomPassword: string;
+        }) => userLogin(roomNumber, roomPassword),
+
+      onSuccess: (data) => {
+          setAuthTokens(data.accessToken, data.refreshToken);
+          login();
+          navigate("/home");
+      },
+
+      onError: (error: AxiosError) => {
+          setErrorMessage(error.response?.data?.message ?? "로그인에 실패했습니다.");
+      },
+  });
+
   const handleLoginBtnClick = () => {
-    navigate('/setting'); // 이동할 경로
+    if (!room || !password) {
+      return setErrorMessage("모든 칸을 다 채워주세요.");
+    }
+    loginMutation.mutate({
+      roomNumber: Number(room),
+      roomPassword: password,
+    });
   };
 
 
@@ -61,6 +93,7 @@ function LoginPage() {
           value={password}
           onChange={setPassword}
         />
+        { errorMessage && <ErrorText>{errorMessage}</ErrorText> }
       </AutoCenterdBox>
       <AutoCenterdBox style={LoginButtonBoxStyle}>
         <Button $width='70%' $fontSize='15px' onClick={handleLoginBtnClick}>로그인하기</Button>
