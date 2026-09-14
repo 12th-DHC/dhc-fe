@@ -8,6 +8,12 @@ export const client = axios.create({
   timeout: 10_000,
 });
 
+// 인증 인터셉터 없이 BASE_URL로 그대로 요청을 보내는 클라이언트
+export const rawClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  timeout: 10_000,
+});
+
 client.interceptors.request.use((config) => {
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
   if (token) config.headers.Authorization = `Bearer ${token}`;

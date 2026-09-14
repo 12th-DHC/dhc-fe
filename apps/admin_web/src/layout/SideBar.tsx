@@ -6,13 +6,18 @@ import {
 } from "../styles/SideBar.style";
 import { NAV_ITEMS } from "../constants/NAV_ITEMS";
 import { clearTokens } from "../utils/auth";
+import { logout } from "../apis/auth";
 
 function Sidebar() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    clearTokens();
-    navigate("/login");
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      clearTokens();
+      navigate("/login");
+    }
   };
 
   return (
