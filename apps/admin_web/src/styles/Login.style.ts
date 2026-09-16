@@ -78,6 +78,12 @@ export const PasswordInput = styled.input`
   }
 `;
 
+export const ErrorText = styled.p`
+  font-size: 13px;
+  color: #e5484d;
+  margin: -16px 0 16px;
+`;
+
 export const LoginButton = styled.button`
   width: 100%;
   background: #954ff8;
@@ -91,5 +97,10 @@ export const LoginButton = styled.button`
 
   &:hover {
     background: #7f3ce0;
+  }
+
+  &:disabled {
+    background: #d9c8f5;
+    cursor: not-allowed;
   }
 `;

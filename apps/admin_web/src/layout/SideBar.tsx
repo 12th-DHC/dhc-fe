@@ -5,9 +5,20 @@ import {
   LogoutButton,
 } from "../styles/SideBar.style";
 import { NAV_ITEMS } from "../constants/NAV_ITEMS";
+import { clearTokens } from "../utils/auth";
+import { logout } from "../apis/auth";
 
 function Sidebar() {
   const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      clearTokens();
+      navigate("/login");
+    }
+  };
 
   return (
     <SidebarWrapper>
@@ -16,7 +27,7 @@ function Sidebar() {
           {label}
         </NavItem>
       ))}
-      <LogoutButton type="button" onClick={() => navigate("/login")}>
+      <LogoutButton type="button" onClick={handleLogout}>
         로그아웃
       </LogoutButton>
     </SidebarWrapper>
