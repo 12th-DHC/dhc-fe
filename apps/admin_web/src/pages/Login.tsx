@@ -58,7 +58,7 @@ function Login() {
           />
         </Field>
 
-        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+        {errorMessage && <ErrorText>{errorMessage}</ErrorText>} // 백엔드에서 에러메세지 받아옴
 
         <LoginButton type="button" disabled={isPending} onClick={handleLogin}>
           {isPending ? "로그인 중..." : "로그인"}
