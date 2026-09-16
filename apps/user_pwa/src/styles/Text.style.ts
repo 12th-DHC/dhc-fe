@@ -19,3 +19,10 @@ export const SmallTitleText = styled.p`
 
     color: #9956f8;
 `
+
+export const ErrorText = styled.p`
+    font-size: 14px;
+    color: #e21616;
+
+    margin: 0;
+`
