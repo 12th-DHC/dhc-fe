@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Title } from "../styles/PageHeader.style";
 import Dropdown from "../components/Dropdown";
 import useClickOutside from "../hooks/useClickOutside";
+import { useChangePassword } from "../queries/useChangePassword";
 import {
   SettingList,
   SettingCard,
@@ -12,6 +13,10 @@ import {
   TimeEditWrapper,
   TimePopover,
   TimeSelectRow,
+  PasswordForm,
+  PasswordInput,
+  PasswordFeedback,
+  SaveButton,
   ResetButton,
 } from "../styles/Setting.style";
 
@@ -40,11 +45,79 @@ function Setting() {
 
   useClickOutside(wrapperRef, isOpen, () => setIsOpen(false));
 
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [newPasswordCheck, setNewPasswordCheck] = useState("");
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const {
+    mutate: changePassword,
+    isPending: isChangingPassword,
+    isSuccess: isChangePasswordSuccess,
+    error: changePasswordError,
+  } = useChangePassword(() => {
+    setCurrentPassword("");
+    setNewPassword("");
+    setNewPasswordCheck("");
+  });
+
+  const apiErrorMessage = changePasswordError?.response?.data?.message ?? null;
+  const feedback = formError ?? apiErrorMessage;
+
+  const handleChangePassword = (e: FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
+
+    if (newPassword !== newPasswordCheck) {
+      setFormError("새 비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    changePassword({ currentPassword, newPassword, newPasswordCheck });
+  };
+
   return (
     <>
       <Title>설정</Title>
 
       <SettingList>
+        <SettingCard>
+          <CardInfo>
+            <CardTitle>비밀번호 변경</CardTitle>
+            <CardDesc>관리자 계정의 비밀번호를 변경합니다.</CardDesc>
+          </CardInfo>
+
+          <PasswordForm onSubmit={handleChangePassword}>
+            <PasswordInput
+              type="password"
+              placeholder="현재 비밀번호"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <PasswordInput
+              type="password"
+              placeholder="새 비밀번호"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <PasswordInput
+              type="password"
+              placeholder="새 비밀번호 확인"
+              value={newPasswordCheck}
+              onChange={(e) => setNewPasswordCheck(e.target.value)}
+            />
+
+            {feedback && <PasswordFeedback>{feedback}</PasswordFeedback>}
+            {!feedback && isChangePasswordSuccess && (
+              <PasswordFeedback $success>비밀번호가 변경되었습니다.</PasswordFeedback>
+            )}
+
+            <SaveButton type="submit" disabled={isChangingPassword}>
+              {isChangingPassword ? "변경 중..." : "비밀번호 변경"}
+            </SaveButton>
+          </PasswordForm>
+        </SettingCard>
+
         <SettingCard>
           <CardInfo>
             <CardTitle>청소 체크 마감 시간</CardTitle>
