@@ -58,7 +58,7 @@ function Login() {
           />
         </Field>
 
-        {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+        {errorMessage && <ErrorText>{errorMessage}</ErrorText>} 
 
         <LoginButton type="button" disabled={isPending} onClick={handleLogin}>
           {isPending ? "로그인 중..." : "로그인"}

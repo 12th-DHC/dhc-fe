@@ -73,6 +73,56 @@ export const TimeSelectRow = styled.div`
   gap: 6px;
 `;
 
+export const PasswordForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 280px;
+`;
+
+export const PasswordInput = styled.input`
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+
+  &:focus {
+    outline: none;
+    border-color: #954ff8;
+  }
+`;
+
+export const PasswordFeedback = styled.p<{ $success?: boolean }>`
+  font-size: 13px;
+  margin: -4px 0 0;
+  color: ${({ $success }) => ($success ? "#16a34a" : "#e5484d")};
+`;
+
+export const SaveButton = styled.button`
+  align-self: flex-start;
+  background: #954ff8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:hover {
+    background: #7f3ce0;
+  }
+
+  &:disabled {
+    background: #d9c8f5;
+    cursor: not-allowed;
+  }
+`;
+
 export const ResetButton = styled.button`
   background: #fff;
   color: #dc2626;
