@@ -1,8 +1,10 @@
 import { useRef, useState, type FormEvent } from "react";
 import { Title } from "../styles/PageHeader.style";
 import Dropdown from "../components/Dropdown";
+import ResetConfirmModal from "../components/ResetConfirmModal";
 import useClickOutside from "../hooks/useClickOutside";
 import { useChangePassword } from "../queries/useChangePassword";
+import { useResetLog } from "../queries/useResetLog";
 import {
   SettingList,
   SettingCard,
@@ -49,6 +51,7 @@ function Setting() {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordCheck, setNewPasswordCheck] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
+  const [isResetModalOpen, setIsResetModalOpen] = useState(false);
 
   const {
     mutate: changePassword,
@@ -63,6 +66,22 @@ function Setting() {
 
   const apiErrorMessage = changePasswordError?.response?.data?.message ?? null;
   const feedback = formError ?? apiErrorMessage;
+
+  const {
+    mutate: resetLog,
+    isPending: isResetting,
+    isSuccess: isResetSuccess,
+    data: resetData,
+    error: resetError,
+    reset: resetResetLogState,
+  } = useResetLog();
+
+  const resetErrorMessage = resetError?.response?.data?.message ?? null;
+
+  const openResetModal = () => {
+    resetResetLogState();
+    setIsResetModalOpen(true);
+  };
 
   const handleChangePassword = (e: FormEvent) => {
     e.preventDefault();
@@ -158,13 +177,26 @@ function Setting() {
           <CardInfo>
             <CardTitle $danger>전체 호실 초기화</CardTitle>
             <CardDesc>
-              모든 호실의 이번주 청소 체크 기록을 초기화합니다. 되돌릴 수
+              한학기 동안의 호실 및 청소 체크 기록을 초기화합니다. 되돌릴 수
               없습니다.
             </CardDesc>
           </CardInfo>
-          <ResetButton>전체 초기화</ResetButton>
+          <ResetButton type="button" onClick={openResetModal}>
+            전체 초기화
+          </ResetButton>
         </SettingCard>
       </SettingList>
+
+      {isResetModalOpen && (
+        <ResetConfirmModal
+          onClose={() => setIsResetModalOpen(false)}
+          onConfirm={(password) => resetLog({ adminPassword: password })}
+          isPending={isResetting}
+          isSuccess={isResetSuccess}
+          successMessage={resetData?.message}
+          errorMessage={resetErrorMessage}
+        />
+      )}
     </>
   );
 }

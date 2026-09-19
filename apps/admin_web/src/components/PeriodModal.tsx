@@ -23,11 +23,18 @@ function PeriodModal({ month, week, onConfirm, onClose }: PeriodModalProps) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
+
+      if (e.key === "Enter") {
+        const target = e.target as HTMLElement;
+        if (target.closest("[data-skip-enter]")) return;
+        e.preventDefault();
+        onConfirm(draftMonth, draftWeek);
+      }
     }
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [onClose, onConfirm, draftMonth, draftWeek]);
 
   return (
     <Overlay
@@ -39,7 +46,12 @@ function PeriodModal({ month, week, onConfirm, onClose }: PeriodModalProps) {
       <ModalCard onClick={(e) => e.stopPropagation()}>
         <ModalHeader>
           <ModalTitle>기간 선택</ModalTitle>
-          <CloseButton type="button" onClick={onClose} aria-label="닫기">
+          <CloseButton
+            type="button"
+            onClick={onClose}
+            aria-label="닫기"
+            data-skip-enter
+          >
             ✕
           </CloseButton>
         </ModalHeader>
@@ -77,7 +89,7 @@ function PeriodModal({ month, week, onConfirm, onClose }: PeriodModalProps) {
         </OptionGroup>
 
         <Footer>
-          <CancelButton type="button" onClick={onClose}>
+          <CancelButton type="button" onClick={onClose} data-skip-enter>
             취소
           </CancelButton>
           <Button
