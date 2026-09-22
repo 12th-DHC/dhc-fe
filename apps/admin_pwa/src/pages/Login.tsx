@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useLogin } from "../queries/useLogin";
 import { isAuthenticated } from "../utils/auth";
+import { getErrorMessage } from "../utils/error";
 import {
   LoginWrapper,
   LoginCard,
@@ -22,7 +23,7 @@ function Login() {
 
   const { mutate, isPending, error } = useLogin(() => navigate("/main"));
 
-  const errorMessage = error?.response?.data?.message ?? error?.message ?? null;
+  const errorMessage = getErrorMessage(error);
 
   const handleLogin = () => {
     mutate({ adminUsername, adminPassword });

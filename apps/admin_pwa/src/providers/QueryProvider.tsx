@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryCache, QueryClient, QueryClientProvider, MutationCache } from "@tanstack/react-query";
+import { getErrorMessage } from "../utils/error";
 
 interface QueryProviderProps {
   children: ReactNode;
@@ -16,6 +17,12 @@ function QueryProvider({ children }: QueryProviderProps) {
             staleTime: 60 * 1000,
           },
         },
+        queryCache: new QueryCache({
+          onError: (error) => console.error("[Query Error]", getErrorMessage(error), error),
+        }),
+        mutationCache: new MutationCache({
+          onError: (error) => console.error("[Mutation Error]", getErrorMessage(error), error),
+        }),
       }),
   );
 
