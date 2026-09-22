@@ -3,6 +3,7 @@ import { Title } from "../styles/PageHeader.style";
 import Dropdown from "../components/Dropdown";
 import useClickOutside from "../hooks/useClickOutside";
 import { useChangePassword } from "../queries/useChangePassword";
+import { getErrorMessage } from "../utils/error";
 import {
   SettingList,
   SettingCard,
@@ -61,7 +62,7 @@ function Setting() {
     setNewPasswordCheck("");
   });
 
-  const apiErrorMessage = changePasswordError?.response?.data?.message ?? null;
+  const apiErrorMessage = getErrorMessage(changePasswordError);
   const feedback = formError ?? apiErrorMessage;
 
   const handleChangePassword = (e: FormEvent) => {
